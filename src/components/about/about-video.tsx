@@ -1,10 +1,10 @@
-import React, { useState, useCallback, useMemo } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@mui/material";
-import { PlayIcon } from "lucide-react";
-import ReactPlayer from "react-player";
 import video from "@/assets/background/video.mp4";
 import { convertSanityBlockToHtml } from "@/lib/utils";
+import { Button } from "@mui/material";
+import { motion } from "framer-motion";
+import { PlayIcon } from "lucide-react";
+import React, { useCallback, useMemo, useState } from "react";
+import ReactPlayer from "react-player";
 
 interface VideoImageAsset {
   asset: {
@@ -45,6 +45,7 @@ export default function AboutVideo({ data }: AboutVideoProps): JSX.Element {
   const [isOpenVideo, setIsOpenVideo] = useState<boolean>(false);
 
   const handlePlayVideo = useCallback(() => {
+    return;
     setIsOpenVideo(true);
   }, []);
 
