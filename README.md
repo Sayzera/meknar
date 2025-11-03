@@ -4,26 +4,33 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby Minimal TypeScript Starter
+  Meknar - Gatsby TypeScript Project
 </h1>
 
 ## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
+1.  **Environment Variables**
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+    Copy `.env.example` to `.env` and configure your environment variables:
 
     ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
+    cp .env.example .env
     ```
 
-2.  **Start developing.**
+    Available environment variables:
+    - `GATSBY_SITE_NAME`: Site name (default: "Karadeniz Palet")
 
-    Navigate into your new site’s directory and start it up.
+2.  **Install dependencies**
 
     ```shell
-    cd my-gatsby-site/
+    npm install
+    ```
+
+3.  **Start developing.**
+
+    Navigate into your new site's directory and start it up.
+
+    ```shell
     npm run develop
     ```
 

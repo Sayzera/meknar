@@ -2,3 +2,9 @@ node_modules/
 .cache/
 public
 src/gatsby-types.d.ts
+.env
+.env.local
+
+# Sanity
+studio-meknar/.sanity/
+studio-meknar/dist/
