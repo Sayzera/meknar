@@ -40,6 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ location }) => {
     NAVIGATION_ITEMS.map((item) => ({ ...item, current: false }))
   );
   const [currentCategory, setCurrentCategory] = useState<string | null>(null);
+  const menuCloseRef = React.useRef<(() => void) | null>(null);
 
   const logoImage = useMemo(
     () => getImage(navbarData?.logo?.asset),
@@ -104,84 +105,102 @@ const Navbar: React.FC<NavbarProps> = ({ location }) => {
                               as="div"
                               className="relative inline-block text-left"
                             >
-                              <Menu.Button
-                                className={cn(
-                                  item.current
-                                    ? "a-icon-dropdown-active"
-                                    : "a-icon-dropdown",
-                                  "inline-flex items-center gap-1"
-                                )}
-                              >
-                                {item.name}
-                                <ChevronDownIcon className="h-4 w-4" />
-                              </Menu.Button>
-                              <Transition
-                                as={Fragment}
-                                enter="transition ease-out duration-100"
-                                enterFrom="transform opacity-0 scale-95"
-                                enterTo="transform opacity-100 scale-100"
-                                leave="transition ease-in duration-75"
-                                leaveFrom="transform opacity-100 scale-100"
-                                leaveTo="transform opacity-0 scale-95"
-                              >
-                                <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                  <div className="py-1">
-                                    <Menu.Item>
-                                      {({ active }) => (
-                                        <button
-                                          onClick={() => navigate("/urunler/")}
-                                          className={cn(
-                                            active
-                                              ? "bg-gray-100 text-gray-900"
-                                              : "text-gray-700",
-                                            currentCategory === null &&
-                                              location.pathname === "/urunler/"
-                                              ? "bg-gray-50 text-primary font-semibold"
-                                              : "",
-                                            "flex items-center gap-2 px-4 py-2 text-sm w-full text-left"
-                                          )}
-                                        >
-                                          {currentCategory === null &&
-                                            location.pathname ===
-                                              "/urunler/" && (
-                                              <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                                            )}
-                                          Tüm Ürünler
-                                        </button>
+                              {({ open, close }) => {
+                                // Store close function in ref
+                                menuCloseRef.current = close;
+                                return (
+                                  <>
+                                    <Menu.Button
+                                      className={cn(
+                                        item.current
+                                          ? "a-icon-dropdown-active"
+                                          : "a-icon-dropdown",
+                                        "inline-flex items-center gap-1"
                                       )}
-                                    </Menu.Item>
-                                    {categories?.edges?.map((category) => (
-                                      <Menu.Item key={category.node.id}>
-                                        {({ active }) => (
-                                          <button
-                                            onClick={() =>
-                                              navigate(
-                                                `/urunler/?kategori=${category.node.slug.current}`
-                                              )
-                                            }
-                                            className={cn(
-                                              active
-                                                ? "bg-gray-100 text-gray-900"
-                                                : "text-gray-700",
-                                              currentCategory ===
-                                                category.node.slug.current
-                                                ? "bg-gray-50 text-primary font-semibold"
-                                                : "",
-                                              "flex items-center gap-2 px-4 py-2 text-sm w-full text-left"
+                                    >
+                                      {item.name}
+                                      <ChevronDownIcon className="h-4 w-4" />
+                                    </Menu.Button>
+                                    <Transition
+                                      as={Fragment}
+                                      enter="transition ease-out duration-100"
+                                      enterFrom="transform opacity-0 scale-95"
+                                      enterTo="transform opacity-100 scale-100"
+                                      leave="transition ease-in duration-75"
+                                      leaveFrom="transform opacity-100 scale-100"
+                                      leaveTo="transform opacity-0 scale-95"
+                                    >
+                                      <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <div className="py-1">
+                                          <Menu.Item>
+                                            {({ active }) => (
+                                              <button
+                                                onClick={() =>
+                                                  navigate("/urunler/")
+                                                }
+                                                className={cn(
+                                                  active
+                                                    ? "bg-gray-100 text-gray-900"
+                                                    : "text-gray-700",
+                                                  currentCategory === null &&
+                                                    location.pathname ===
+                                                      "/urunler/"
+                                                    ? "bg-gray-50 text-primary font-semibold"
+                                                    : "",
+                                                  "flex items-center gap-2 px-4 py-2 text-sm w-full text-left"
+                                                )}
+                                              >
+                                                {currentCategory === null &&
+                                                  location.pathname ===
+                                                    "/urunler/" && (
+                                                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                                  )}
+                                                Tüm Ürünler
+                                              </button>
                                             )}
-                                          >
-                                            {currentCategory ===
-                                              category.node.slug.current && (
-                                              <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                                            )}
-                                            {category.node.category_name}
-                                          </button>
-                                        )}
-                                      </Menu.Item>
-                                    ))}
-                                  </div>
-                                </Menu.Items>
-                              </Transition>
+                                          </Menu.Item>
+                                          {categories?.edges?.map(
+                                            (category) => (
+                                              <Menu.Item key={category.node.id}>
+                                                {({ active }) => (
+                                                  <button
+                                                    onClick={() =>
+                                                      navigate(
+                                                        `/urunler/?kategori=${category.node.slug.current}`
+                                                      )
+                                                    }
+                                                    className={cn(
+                                                      active
+                                                        ? "bg-gray-100 text-gray-900"
+                                                        : "text-gray-700",
+                                                      currentCategory ===
+                                                        category.node.slug
+                                                          .current
+                                                        ? "bg-gray-50 text-primary font-semibold"
+                                                        : "",
+                                                      "flex items-center gap-2 px-4 py-2 text-sm w-full text-left"
+                                                    )}
+                                                  >
+                                                    {currentCategory ===
+                                                      category.node.slug
+                                                        .current && (
+                                                      <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                                    )}
+                                                    {
+                                                      category.node
+                                                        .category_name
+                                                    }
+                                                  </button>
+                                                )}
+                                              </Menu.Item>
+                                            )
+                                          )}
+                                        </div>
+                                      </Menu.Items>
+                                    </Transition>
+                                  </>
+                                );
+                              }}
                             </Menu>
                           ) : (
                             <Link
@@ -190,6 +209,12 @@ const Navbar: React.FC<NavbarProps> = ({ location }) => {
                                 item.current ? "a-icon-active" : "a-icon"
                               )}
                               aria-current={item.current ? "page" : undefined}
+                              onClick={() => {
+                                // Close dropdown menu if open
+                                if (menuCloseRef.current) {
+                                  menuCloseRef.current();
+                                }
+                              }}
                             >
                               {item.name}
                             </Link>
