@@ -41,6 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ location }) => {
   );
   const [currentCategory, setCurrentCategory] = useState<string | null>(null);
   const menuCloseRef = React.useRef<(() => void) | null>(null);
+  const mobileMenuCloseRef = React.useRef<(() => void) | null>(null);
 
   const logoImage = useMemo(
     () => getImage(navbarData?.logo?.asset),
@@ -249,67 +250,71 @@ const Navbar: React.FC<NavbarProps> = ({ location }) => {
                   <div key={item.name}>
                     {item.name === "Ürünlerimiz" ? (
                       <Disclosure>
-                        {({ open }) => (
-                          <>
-                            <Disclosure.Button
-                              className={cn(
-                                item.current
-                                  ? "bg-gray-900 !text-white"
-                                  : " hover:bg-gray-700 hover:text-white",
-                                "w-full flex items-center justify-between rounded-md px-3 py-2 font-medium"
-                              )}
-                            >
-                              <span>{item.name}</span>
-                              <ChevronDownIcon
+                        {({ open, close }) => {
+                          // Store mobile close function in ref
+                          mobileMenuCloseRef.current = close;
+                          return (
+                            <>
+                              <Disclosure.Button
                                 className={cn(
-                                  "h-4 w-4 transition-transform",
-                                  open ? "rotate-180" : ""
-                                )}
-                              />
-                            </Disclosure.Button>
-                            <Disclosure.Panel className="pl-4 space-y-1 mt-1">
-                              <button
-                                onClick={() => navigate("/urunler/")}
-                                className={cn(
-                                  "flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-700 hover:text-white w-full text-left",
-                                  currentCategory === null &&
-                                    location.pathname === "/urunler/"
-                                    ? "bg-gray-700 text-white font-semibold"
-                                    : ""
+                                  item.current
+                                    ? "bg-gray-900 !text-white"
+                                    : " hover:bg-gray-700 hover:text-white",
+                                  "w-full flex items-center justify-between rounded-md px-3 py-2 font-medium"
                                 )}
                               >
-                                {currentCategory === null &&
-                                  location.pathname === "/urunler/" && (
-                                    <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                                <span>{item.name}</span>
+                                <ChevronDownIcon
+                                  className={cn(
+                                    "h-4 w-4 transition-transform",
+                                    open ? "rotate-180" : ""
                                   )}
-                                Tüm Ürünler
-                              </button>
-                              {categories?.edges?.map((category) => (
+                                />
+                              </Disclosure.Button>
+                              <Disclosure.Panel className="pl-4 space-y-1 mt-1">
                                 <button
-                                  key={category.node.id}
-                                  onClick={() =>
-                                    navigate(
-                                      `/urunler/?kategori=${category.node.slug.current}`
-                                    )
-                                  }
+                                  onClick={() => navigate("/urunler/")}
                                   className={cn(
                                     "flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-700 hover:text-white w-full text-left",
-                                    currentCategory ===
-                                      category.node.slug.current
+                                    currentCategory === null &&
+                                      location.pathname === "/urunler/"
                                       ? "bg-gray-700 text-white font-semibold"
                                       : ""
                                   )}
                                 >
-                                  {currentCategory ===
-                                    category.node.slug.current && (
-                                    <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                                  )}
-                                  {category.node.category_name}
+                                  {currentCategory === null &&
+                                    location.pathname === "/urunler/" && (
+                                      <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                                    )}
+                                  Tüm Ürünler
                                 </button>
-                              ))}
-                            </Disclosure.Panel>
-                          </>
-                        )}
+                                {categories?.edges?.map((category) => (
+                                  <button
+                                    key={category.node.id}
+                                    onClick={() =>
+                                      navigate(
+                                        `/urunler/?kategori=${category.node.slug.current}`
+                                      )
+                                    }
+                                    className={cn(
+                                      "flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-700 hover:text-white w-full text-left",
+                                      currentCategory ===
+                                        category.node.slug.current
+                                        ? "bg-gray-700 text-white font-semibold"
+                                        : ""
+                                    )}
+                                  >
+                                    {currentCategory ===
+                                      category.node.slug.current && (
+                                      <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                                    )}
+                                    {category.node.category_name}
+                                  </button>
+                                ))}
+                              </Disclosure.Panel>
+                            </>
+                          );
+                        }}
                       </Disclosure>
                     ) : (
                       <Link
@@ -321,6 +326,12 @@ const Navbar: React.FC<NavbarProps> = ({ location }) => {
                           "block rounded-md px-3 py-2 font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
+                        onClick={() => {
+                          // Close mobile dropdown menu if open
+                          if (mobileMenuCloseRef.current) {
+                            mobileMenuCloseRef.current();
+                          }
+                        }}
                       >
                         {item.name}
                       </Link>
