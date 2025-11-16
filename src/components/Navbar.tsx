@@ -113,7 +113,7 @@ const Navbar: React.FC<NavbarProps> = ({ location }) => {
               </div>
             </div>
 
-            {/* Mobile Navigation */}
+            {/* Mobile Navigation-- */}
             <Disclosure.Panel className="md:hidden">
               <nav className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                 {navigation.map((item) => (
