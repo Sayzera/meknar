@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import InteractiveList from "../list";
@@ -42,8 +41,6 @@ export default function ProductDetail({ product }: Props) {
         />
       </div>
       <div className="bg-white mx-3 md:mx-0 p-5 rounded-lg shadow-lg">
-        <Badge variant="success">Stokta Var</Badge>
-
         <div className="mt-5">
           <div>
             <span className="text-xl font-bold">{product.title}</span>

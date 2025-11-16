@@ -31,7 +31,7 @@ module.exports = {
           DEFAULT: "var(--text-default-color)",
         },
         primary: {
-          DEFAULT: "#F9541C", // Ana primary rengi - istediğiniz rengi buraya yazın
+          DEFAULT: "#02518C", // Ana primary rengi - istediğiniz rengi buraya yazın
           foreground: "hsl(var(--primary-foreground))",
         },
         success: {

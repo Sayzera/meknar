@@ -79,9 +79,9 @@ export default function Banner({ data }: BannerProps): JSX.Element {
                   animate={{ x: [-100, 0, 0] }}
                   transition={{ duration: 2 }}
                 >
-                  <h1 className="text-xl leading-9 md:text-6xl font-bold md:leading-[4.25rem] text-white md:text-start px-10 md:px-0">
+                  <h1 className="text-xl leading-9 md:text-6xl font-extrabold md:leading-[4.25rem] text-white md:text-start px-10 md:px-0 drop-shadow-[0_4px_12px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%)]">
                     {data?.home_banner_slogan?.title}{" "}
-                    <span className="text-primary">
+                    <span className="text-amber-400 drop-shadow-[0_4px_12px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%)] underline decoration-4 md:decoration-[6px] decoration-amber-400 underline-offset-4 md:underline-offset-8">
                       {data?.home_banner_slogan?.last_title}
                     </span>
                   </h1>
@@ -89,7 +89,7 @@ export default function Banner({ data }: BannerProps): JSX.Element {
 
                 <div className="flex flex-col px-10 md:px-0">
                   {/* Description */}
-                  <p className="mt-4 md:mt-8 text-white">
+                  <p className="mt-4 md:mt-8 text-white font-semibold text-base md:text-xl drop-shadow-[0_3px_10px_rgba(0,0,0,1)] [text-shadow:_1px_1px_6px_rgb(0_0_0_/_100%)]">
                     {data.banner_description}
                   </p>
 
@@ -118,14 +118,14 @@ export default function Banner({ data }: BannerProps): JSX.Element {
                   {/* Product Titles */}
                   {data?.product_titles && data.product_titles.length > 0 && (
                     <div className="mt-4 md:mt-8 text-white">
-                      <span className="text-inherit text-xl text-primary">
+                      <span className="text-inherit text-xl md:text-2xl text-amber-400  font-bold drop-shadow-[0_3px_10px_rgba(0,0,0,1)] [text-shadow:_1px_1px_6px_rgb(0_0_0_/_100%)]">
                         Ürünler
                       </span>
                       <ul className="flex space-x-4 mt-1">
                         {data.product_titles.map((item, index) => (
                           <li
                             key={`${item}-${index}`}
-                            className="text-white text-sm md:text-lg"
+                            className="text-white text-sm md:text-xl font-semibold drop-shadow-[0_3px_10px_rgba(0,0,0,1)] [text-shadow:_1px_1px_6px_rgb(0_0_0_/_100%)]"
                           >
                             {item}
                           </li>

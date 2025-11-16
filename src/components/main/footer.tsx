@@ -54,13 +54,11 @@ export default function Footer({}: Props) {
         <div>
           {/*Footer container --> */}
           <footer className=" text-center text-surface/75  lg:text-left">
-            <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 lg:justify-between">
+            {/* <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 lg:justify-between">
               <div className="me-12 hidden lg:block">
                 <span>Sosyal ağlarda bizimle bağlantı kurun:</span>
               </div>
-              {/*Social network icons container --> */}
               <div className="flex justify-center">
-                {/* facebook */}
                 <a
                   href={settings?.facebook}
                   className="me-6 [&>svg]:h-4 [&>svg]:w-4"
@@ -70,11 +68,9 @@ export default function Footer({}: Props) {
                     fill="currentColor"
                     viewBox="0 0 320 512"
                   >
-                    {/*Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. --> */}
                     <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
                   </svg>
                 </a>
-                {/* Twitter */}
                 <a
                   href={settings?.twitter}
                   className="me-6 [&>svg]:h-4 [&>svg]:w-4 "
@@ -84,12 +80,10 @@ export default function Footer({}: Props) {
                     fill="currentColor"
                     viewBox="0 0 512 512"
                   >
-                    {/*Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. --> */}
                     <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
                   </svg>
                 </a>
 
-                {/* instagram */}
                 <a
                   href={settings?.instagram}
                   className="me-6 [&>svg]:h-4 [&>svg]:w-4"
@@ -99,12 +93,11 @@ export default function Footer({}: Props) {
                     fill="currentColor"
                     viewBox="0 0 448 512"
                   >
-                    {/*Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. --> */}
                     <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
                   </svg>
                 </a>
               </div>
-            </div>
+            </div> */}
 
             {/*Main container div: holds the entire content of the footer, including four sections (TW Elements, Products, Useful links, and Contact), with responsive styling and appropriate padding/margins. --> */}
             <div className="mx-6 py-10 text-center md:text-left">
@@ -215,22 +208,24 @@ export default function Footer({}: Props) {
                     </span>
                     {settings?.phone}
                   </p>
-                  <p className="flex items-center justify-center md:justify-start">
+                  <a
+                    href="https://www.linkedin.com/in/meknar-m%C3%BChendislik-1066ab389/"
+                    className="flex items-center justify-center md:justify-start"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Meknar Mühendislik LinkedIn"
+                  >
                     <span className="me-3 [&>svg]:h-5 [&>svg]:w-5">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
                         fill="currentColor"
+                        viewBox="0 0 24 24"
                       >
-                        <path
-                          fill-rule="evenodd"
-                          d="M7.875 1.5C6.839 1.5 6 2.34 6 3.375v2.99c-.426.053-.851.11-1.274.174-1.454.218-2.476 1.483-2.476 2.917v6.294a3 3 0 003 3h.27l-.155 1.705A1.875 1.875 0 007.232 22.5h9.536a1.875 1.875 0 001.867-2.045l-.155-1.705h.27a3 3 0 003-3V9.456c0-1.434-1.022-2.7-2.476-2.917A48.716 48.716 0 0018 6.366V3.375c0-1.036-.84-1.875-1.875-1.875h-8.25zM16.5 6.205v-2.83A.375.375 0 0016.125 3h-8.25a.375.375 0 00-.375.375v2.83a49.353 49.353 0 019 0zm-.217 8.265c.178.018.317.16.333.337l.526 5.784a.375.375 0 01-.374.409H7.232a.375.375 0 01-.374-.409l.526-5.784a.373.373 0 01.333-.337 41.741 41.741 0 018.566 0zm.967-3.97a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H18a.75.75 0 01-.75-.75V10.5zM15 9.75a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H15z"
-                          clip-rule="evenodd"
-                        />
+                        <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.42c0-1.293-.025-2.957-1.803-2.957-1.804 0-2.081 1.409-2.081 2.867v5.51h-3v-10h2.879v1.357h.041c.401-.757 1.379-1.557 2.841-1.557 3.037 0 3.6 2.001 3.6 4.601v5.599z" />
                       </svg>
                     </span>
-                    {settings?.fax}
-                  </p>
+                    LinkedIn
+                  </a>
                 </div>
               </div>
             </div>

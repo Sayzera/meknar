@@ -14,6 +14,32 @@ export const onCreateWebpackConfig = ({ actions }: { actions: any }) => {
   });
 };
 
+export const createSchemaCustomization = ({ actions }: { actions: any }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type SanityWorkHoursDay {
+      day: String
+      start_time: String
+      end_time: String
+      is_closed: Boolean
+    }
+
+    type SanityContactWorkHours {
+      title: String
+      days: [SanityWorkHoursDay]
+    }
+
+    type SanityServices implements Node {
+      _id: String
+      title: String
+      overview: [SanityBlock]
+      _rawOverview: JSON
+      images: SanityImage
+    }
+  `;
+  createTypes(typeDefs);
+};
+
 exports.createPages = async ({
   graphql,
   actions,

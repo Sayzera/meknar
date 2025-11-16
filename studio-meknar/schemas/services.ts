@@ -22,8 +22,9 @@ export default defineType({
     defineField({
       name: 'overview',
       title: 'Açıklama',
-      type: 'text',
+      type: 'array',
       description: 'Hizmet açıklaması giriniz.',
+      of: [{type: 'block'}],
     }),
     defineField({
       name: 'images',
@@ -47,13 +48,27 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'overview',
+      overview: 'overview',
       media: 'images',
     },
-    prepare({title = 'Hizmet', subtitle, media}: PreviewProps) {
+    prepare({title = 'Hizmet', overview, media}: any) {
+      // Eğer overview array ise (block content), ilk block'un text'ini al
+      let subtitle = ''
+      if (Array.isArray(overview) && overview.length > 0) {
+        const firstBlock = overview[0]
+        if (firstBlock?.children && firstBlock.children.length > 0) {
+          subtitle = firstBlock.children
+            .map((child: any) => child.text)
+            .join('')
+            .slice(0, 100) // İlk 100 karakter
+        }
+      } else if (typeof overview === 'string') {
+        subtitle = overview.slice(0, 100)
+      }
+
       return {
         title,
-        subtitle: subtitle || '',
+        subtitle: subtitle || 'Açıklama yok',
         media,
       }
     },

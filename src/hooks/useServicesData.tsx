@@ -9,7 +9,7 @@ export interface ServiceNode {
     };
   };
   title: string;
-  overview: string;
+  overview?: any;
 }
 
 interface ServicesDataQuery {
@@ -38,7 +38,21 @@ export default function useServicesData(): ServicesDataQuery["allSanityServices"
                 }
               }
               title
-              overview
+              overview {
+                ... on SanityBlock {
+                  _key
+                  _type
+                  children {
+                    _key
+                    _type
+                    marks
+                    text
+                  }
+                  style
+                  listItem
+                  level
+                }
+              }
             }
           }
         }

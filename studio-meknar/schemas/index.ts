@@ -25,6 +25,7 @@ import {
   contact_phone,
   contact_mail,
   contact_work_hours,
+  work_hours_day,
 } from './objects/project/contactPageObject'
 
 export const schemaTypes = [
@@ -53,6 +54,7 @@ export const schemaTypes = [
   contact_phone,
   contact_mail,
   contact_work_hours,
+  work_hours_day,
   productRating,
 ]
 

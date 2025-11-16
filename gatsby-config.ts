@@ -6,11 +6,11 @@ require("dotenv").config({
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: process.env.GATSBY_SITE_NAME || `Karadeniz Palet`,
-    description: `Ankara Toptan Palet Satışı`,
-    twitterUsername: `@karadenizpalet`,
+    title: process.env.GATSBY_SITE_NAME || `Meknar Mühendislik`,
+    description: `Meknar Mühendislik`,
+    twitterUsername: `@meknar`,
     image: ``,
-    siteUrl: `https://karadenizpalet.com`,
+    siteUrl: `https://meknar.com/`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

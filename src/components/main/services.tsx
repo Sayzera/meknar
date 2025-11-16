@@ -15,7 +15,7 @@ interface ServiceEdge {
   node: {
     _id: string;
     title: string;
-    overview: string;
+    overview: any;
     images: {
       asset: {
         gatsbyImageData: IGatsbyImageData;

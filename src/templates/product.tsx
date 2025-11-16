@@ -1,7 +1,6 @@
 import InteractiveList from "@/components/list";
 import PageHeader from "@/components/page-header";
 import BasicRating from "@/components/rating";
-import { Badge } from "@/components/ui/badge";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { Link } from "gatsby";
 import React from "react";
@@ -65,8 +64,6 @@ export default function ProductDetail({ pageContext }: Props) {
     }[]
   >();
   const { productData, productPath } = pageContext;
-
-  console.log(productData.overview);
 
   React.useEffect(() => {
     if (productData.images && productData.images.length > 0) {
@@ -209,8 +206,6 @@ export default function ProductDetail({ pageContext }: Props) {
             )}
           </div>
           <div className="bg-white mx-3 md:mx-0 p-5 rounded-lg shadow-lg">
-            <Badge variant="default">Stokta Var</Badge>
-
             <div className="mt-5">
               <div>
                 <span className="text-xl font-bold">{productData.title}</span>

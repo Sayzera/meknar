@@ -24,7 +24,7 @@
     "@mui/icons-material": "^5.15.12",
     "@mui/material": "^5.15.12",
     "@mui/styled-engine-sc": "^6.0.0-alpha.17",
-    "@portabletext/react": "^3.0.15",
+    "@portabletext/react": "^3.2.4",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@sanity/block-content-to-react": "^3.0.0",

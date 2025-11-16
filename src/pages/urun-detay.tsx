@@ -3,7 +3,6 @@ import palet2 from "@/assets/background/tahta-palet-video.png";
 import InteractiveList from "@/components/list";
 import PageHeader from "@/components/page-header";
 import BasicRating from "@/components/rating";
-import { Badge } from "@/components/ui/badge";
 import React from "react";
 import Lightbox from "yet-another-react-lightbox";
 import Counter from "yet-another-react-lightbox/plugins/counter";
@@ -83,8 +82,6 @@ export default function ProductDetail({}: Props) {
             </div>
           </div>
           <div className="bg-white mx-3 md:mx-0 p-5 rounded-lg shadow-lg">
-            <Badge variant="success">Stokta Var</Badge>
-
             <div className="mt-5">
               <div>
                 <span className="text-xl font-bold">

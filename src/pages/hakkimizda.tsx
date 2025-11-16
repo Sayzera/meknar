@@ -1,4 +1,3 @@
-import AboutVideo from "@/components/about/about-video";
 import OurCoreValues from "@/components/about/our-core-values";
 import FrequentlyAsked from "@/components/main/frequentlyAsked";
 import PageHeader from "@/components/page-header";
@@ -104,7 +103,8 @@ export default function About(): JSX.Element {
           </motion.section>
 
           {/* About Video */}
-          {data.video && <AboutVideo data={data.video} />}
+          {/*
+          data.video && <AboutVideo data={data.video} />*/}
 
           {/* Our Core Values */}
           <motion.section

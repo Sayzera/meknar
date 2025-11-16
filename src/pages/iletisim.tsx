@@ -11,10 +11,18 @@ import { CiClock2, CiMail } from "react-icons/ci";
 import { IoPhonePortraitOutline } from "react-icons/io5";
 
 type Props = {};
+
+type WorkHoursDay = {
+  day: string;
+  start_time?: string;
+  end_time?: string;
+  is_closed: boolean;
+};
+
 type contactNodeData = {
   work_hours: {
     title: string;
-    work_hours: string;
+    days?: WorkHoursDay[];
   };
   mail: {
     title: string;
@@ -187,12 +195,39 @@ export default function Contact({}: Props) {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">
                       {data.work_hours?.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed whitespace-pre-line">
-                      {data.work_hours?.work_hours}
-                    </p>
+                    {data.work_hours?.days &&
+                    data.work_hours.days.length > 0 ? (
+                      <div className="space-y-2">
+                        {data.work_hours.days.map((dayInfo, index) => (
+                          <div
+                            key={index}
+                            className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0"
+                          >
+                            <span className="font-medium text-gray-700">
+                              {dayInfo.day}
+                            </span>
+                            <span
+                              className={`text-sm ${
+                                dayInfo.is_closed
+                                  ? "text-red-500 font-semibold"
+                                  : "text-gray-600"
+                              }`}
+                            >
+                              {dayInfo.is_closed
+                                ? "Kapalı"
+                                : `${dayInfo.start_time} - ${dayInfo.end_time}`}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-gray-600 leading-relaxed">
+                        Çalışma saatleri bilgisi bulunmamaktadır.
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { defineType } from 'sanity';
+import {defineType} from 'sanity'
 
 /**
  * Contact geo location object schema
@@ -21,7 +21,7 @@ export const contact_geo_location = defineType({
       description: 'Örnek: Longitude',
     },
   ],
-});
+})
 
 /**
  * Contact address object schema
@@ -44,7 +44,7 @@ export const contact_adress = defineType({
       description: 'Örnek: Adres açıklama',
     },
   ],
-});
+})
 
 /**
  * Contact phone object schema
@@ -67,7 +67,7 @@ export const contact_phone = defineType({
       description: 'Örnek: Telefon numarası',
     },
   ],
-});
+})
 
 /**
  * Contact mail object schema
@@ -90,7 +90,96 @@ export const contact_mail = defineType({
       description: 'Örnek: E Posta',
     },
   ],
-});
+})
+
+/**
+ * Contact work hours day object schema
+ */
+export const work_hours_day = defineType({
+  name: 'work_hours_day',
+  title: 'Günlük Çalışma Saati',
+  type: 'object',
+  fields: [
+    {
+      name: 'day',
+      title: 'Gün',
+      type: 'string',
+      description: 'Günü seçin',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          {title: 'Pazartesi', value: 'Pazartesi'},
+          {title: 'Salı', value: 'Salı'},
+          {title: 'Çarşamba', value: 'Çarşamba'},
+          {title: 'Perşembe', value: 'Perşembe'},
+          {title: 'Cuma', value: 'Cuma'},
+          {title: 'Cumartesi', value: 'Cumartesi'},
+          {title: 'Pazar', value: 'Pazar'},
+        ],
+        layout: 'dropdown',
+      },
+    },
+    {
+      name: 'is_closed',
+      title: 'Kapalı mı?',
+      type: 'boolean',
+      description: 'Bu gün kapalı ise işaretleyin',
+      initialValue: false,
+    },
+    {
+      name: 'start_time',
+      title: 'Başlangıç Saati',
+      type: 'string',
+      description: 'Örnek: 09:00',
+      hidden: ({parent}) => parent?.is_closed === true,
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const isClosed = (context.parent as any)?.is_closed
+          if (!isClosed && !value) {
+            return 'Başlangıç saati gerekli'
+          }
+
+          return true
+        }),
+      options: {
+        timeFormat: 'HH:mm',
+      },
+    },
+    {
+      name: 'end_time',
+      title: 'Bitiş Saati',
+      type: 'string',
+      description: 'Örnek: 18:00',
+      hidden: ({parent}) => parent?.is_closed === true,
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const isClosed = (context.parent as any)?.is_closed
+          if (!isClosed && !value) {
+            return 'Bitiş saati gerekli'
+          }
+
+          return true
+        }),
+      options: {
+        timeFormat: 'HH:mm',
+      },
+    },
+  ],
+  preview: {
+    select: {
+      day: 'day',
+      start_time: 'start_time',
+      end_time: 'end_time',
+      is_closed: 'is_closed',
+    },
+    prepare({day, start_time, end_time, is_closed}) {
+      return {
+        title: day,
+        subtitle: is_closed ? 'Kapalı' : `${start_time || ''} - ${end_time || ''}`,
+      }
+    },
+  },
+})
 
 /**
  * Contact work hours object schema
@@ -104,14 +193,14 @@ export const contact_work_hours = defineType({
       name: 'title',
       title: 'Çalışma Saatleri Başlığı',
       type: 'string',
-      description: 'Örnek: Çalışma Saatleri başlığı',
-    },
-    {
-      name: 'work_hours',
-      title: 'Çalışma Saatleri',
-      type: 'string',
       description: 'Örnek: Çalışma Saatleri',
     },
+    {
+      name: 'days',
+      title: 'Günlük Çalışma Saatleri',
+      type: 'array',
+      of: [{type: 'work_hours_day'}],
+      description: 'Her gün için çalışma saatlerini ekleyin',
+    },
   ],
-});
-
+})
