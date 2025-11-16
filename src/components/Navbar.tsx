@@ -30,7 +30,7 @@ const NAVIGATION_ITEMS: Omit<NavigationItem, "current">[] = [
 ];
 
 /**
- * Navbar component with responsive design and active state management
+ * Navbar component with responsive design and active state management --
  * @param {NavbarProps} props - Component props
  */
 const Navbar: React.FC<NavbarProps> = ({ location }) => {
