@@ -72,9 +72,9 @@ export default function useHomeData(): HomeNode | undefined {
               bannerImage {
                 asset {
                   gatsbyImageData(
-                    layout: CONSTRAINED
+                    layout: FULL_WIDTH
                     placeholder: BLURRED
-                    width: 200
+                    sizes: "(max-width: 768px) 100vw, 1920px"
                   )
                 }
               }

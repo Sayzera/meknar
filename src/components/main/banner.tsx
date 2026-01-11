@@ -60,12 +60,20 @@ export default function Banner({ data }: BannerProps): JSX.Element {
           image={bannerImage}
           className="absolute inset-0 w-full h-full"
           alt={process.env.GATSBY_SITE_NAME || "Banner"}
-          imgStyle={{ objectFit: "cover" }}
+          imgStyle={{
+            objectFit: "cover",
+            objectPosition: "center center",
+          }}
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+          }}
         />
       )}
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gray-900 opacity-75" />
+      <div className="absolute inset-0 bg-gray-900 opacity-50" />
 
       {/* Content */}
       <div className="absolute inset-0 flex justify-center">
