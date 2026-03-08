@@ -2,58 +2,56 @@ import React from "react";
 // import Swiper and modules style
 import { motion } from "framer-motion";
 
-import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/effect-cube";
+import "swiper/css/effect-fade";
+import "swiper/css/effect-flip";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import "swiper/css/effect-fade";
-import "swiper/css/effect-cube";
-import "swiper/css/effect-flip";
-import "swiper/css/effect-coverflow";
-import "swiper/css/effect-flip";
 import ProductDetail from "./product-detail";
 
 // Import Swiper styles
 interface Product {
-    rating: {
-      rating: number;
-      view_count: number;
-    }
-    title: string;
+  rating: {
+    rating: number;
+    view_count: number;
+  };
+  title: string;
+  description: string;
+  overview: {
+    children: {
+      text: string;
+    }[];
+  }[];
+  images: {
+    asset: any;
+  };
+  ozellikler: {
     description: string;
-    overview: {
-      children: {
-        text: string;
-      }[]
-    }[]
-    images: {
-      asset:any
-    }
-    ozellikler: {
-      description: string;
-      title: string;
-    }[]
-    category: {
-      category_name:string
-    }
-  }
+    title: string;
+  }[];
+  category: {
+    category_name: string;
+  };
+}
 interface Props {
- data: {
-  paletlerimiz: {
-    title: string;
-    description: string;
-  }
-  products: {
-    node: Product
-  }[]
- }
+  data: {
+    paletlerimiz: {
+      title: string;
+      description: string;
+    };
+    products: {
+      node: Product;
+    }[];
+  };
 }
 
-export default function SecondSection({data}: Props) {
-
+export default function SecondSection({ data }: Props) {
   return (
     <motion.div
       variants={{
@@ -79,7 +77,9 @@ export default function SecondSection({data}: Props) {
                 </span>
 
                 <div className="mt-4">
-                  <span className="text-2xl font-bold">{data.paletlerimiz.title}</span>
+                  <span className="text-2xl font-bold">
+                    {data.paletlerimiz.title}
+                  </span>
                   <p className="w-full md:w-1/2 text-secondary text-sm mt-3">
                     {data.paletlerimiz.description}
                   </p>
@@ -102,20 +102,11 @@ export default function SecondSection({data}: Props) {
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log("slide change")}
               >
-                {
-                  data?.products?.map((item:
-                    {
-                      node: Product
-                    }
-                    ) => (
-                    <SwiperSlide key={item.node.title}>
-                    <ProductDetail product={item.node}  />
-                    </SwiperSlide>
-                  )
-                  )
-                }
-              
-              
+                {data?.products?.map((item: { node: Product }) => (
+                  <SwiperSlide key={item.node.title}>
+                    <ProductDetail product={item.node} />
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
           </div>

@@ -11,7 +11,6 @@ import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 
-import { SEO } from "@/components/seo";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import "yet-another-react-lightbox/plugins/counter.css";
 
@@ -150,7 +149,7 @@ export default function ProductDetail({ pageContext }: Props) {
         slides={productImages}
       />
       <PageHeader title={productData.title} />
-      <div className="mx-auto max-w-7xl py-6 px-0 md:px-12">
+      <div className="mx-auto max-w-7xl py-6 px-0 md:px-12 ">
         <div className="grid grid-cols-1 md:grid-cols-2 md:space-x-10 min-h-[645px] ">
           <div>
             {productData.images &&
@@ -194,7 +193,7 @@ export default function ProductDetail({ pageContext }: Props) {
                               alt={productData.title}
                             />
                           </div>
-                        )
+                        ),
                     )}
                   </div>
                 </div>
@@ -220,7 +219,7 @@ export default function ProductDetail({ pageContext }: Props) {
                   </div>
                 </div>
 
-                <div>
+                <div className="">
                   <InteractiveList properties={productData.ozellikler} />
                 </div>
 
@@ -237,20 +236,3 @@ export default function ProductDetail({ pageContext }: Props) {
     </div>
   );
 }
-
-export const Head = (props: Props) => {
-  let data = props.pageContext.productData;
-  let path = props.pageContext.productPath;
-
-  const productImage =
-    data.images?.[0]?.asset?.gatsbyImageData?.images?.fallback?.src;
-
-  return (
-    <SEO
-      title={`${process.env.GATSBY_SITE_NAME} | ${data.title}`}
-      description={data.seo_description}
-      pathname={path}
-      productImage={productImage}
-    ></SEO>
-  );
-};

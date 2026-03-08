@@ -32,15 +32,16 @@ type Props = {
 
 export default function ProductDetail({ product }: Props) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 md:space-x-10 min-h-[645px] ">
-      <div className="rounded-lg flex items-center justify-center">
+    <div className="grid grid-cols-1 md:grid-cols-2  min-h-[645px] ">
+      <div className="w-full h-full min-h-[645px] overflow-hidden bg-white flex items-center justify-center rounded-lg">
         <GatsbyImage
           image={getImage(product.images[0].asset) as any}
           alt={process.env.GATSBY_SITE_NAME}
           placeholder={"blurred" as any}
+          imgClassName="object-contain !w-full !h-full"
         />
       </div>
-      <div className="bg-white mx-3 md:mx-0 p-5 rounded-lg shadow-lg">
+      <div className="bg-white mx-3 md:mx-0 p-5">
         <div className="mt-5">
           <div>
             <span className="text-xl font-bold">{product.title}</span>
@@ -61,7 +62,7 @@ export default function ProductDetail({ product }: Props) {
               </p>
             </div>
 
-            <div>
+            <div className="max-h-[400px] overflow-y-scroll [scrollbar-gutter:stable] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-gray-400">
               <InteractiveList properties={product?.ozellikler} />
             </div>
           </div>

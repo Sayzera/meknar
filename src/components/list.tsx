@@ -25,12 +25,12 @@ const data = {
   ],
 };
 export default function InteractiveList({
-  properties
+  properties,
 }: {
   properties: {
-      title: string;
-      description: string;
-    }[];
+    title: string;
+    description: string;
+  }[];
 }) {
   return (
     <div>
