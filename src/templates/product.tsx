@@ -223,7 +223,7 @@ export default function ProductDetail({ pageContext }: Props) {
                   <InteractiveList properties={productData.ozellikler} />
                 </div>
 
-                <div>
+                <div className="h-[300px] overflow-y-auto [scrollbar-gutter:stable] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-gray-400">
                   <p className="mt-4 text-sm leading-6 text-secondary">
                     <PortableText value={productData.overview} />
                   </p>
